@@ -1,3 +1,3 @@
 <?php
-echo "Hello Master test";
+echo "Hello Branch v0.2 test";
 ?>

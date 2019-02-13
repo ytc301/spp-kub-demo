@@ -13,9 +13,14 @@ pipeline {
     }
     stage('push spp') {
       steps {
-        sh '''docker login -u pstest -p Test1234567890  harbor.hicustom.com
+        sh '''withCredentials([usernamePassword(credentialsId: \'harbor\', passwordVariable: \'dockerHubPassword\', usernameVariable: \'dockerHubUser\')])
+docker loginout
+docker login ${harbor_addr} -u ${dockerHubUser} -p ${dockerHubPassword}
 docker push  harbor.hicustom.com/pub/spp-kub-demo:v1'''
       }
     }
+  }
+  environment {
+    harbor_addr = 'harbor.hicustom.com'
   }
 }
